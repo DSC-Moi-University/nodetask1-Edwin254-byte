@@ -1,14 +1,18 @@
 function socksForSale() {
-  return 3;
   const socksArr = [10, 20, 20, 10, 10, 30, 50, 10, 20];
-  let pairs = 0;
-  for (let i = 0; i < socksArr.length; i++) {
-    for (let j = i + 1; j < socksArr.length; j++) {
-      if (socksArr[i] === socksArr[j]) pairs++;
-    }
-  }
+  const socksSet = new Set(socksArr);
+  let socksPair = 0;
 
-  return pairs;
+  socksSet.forEach((num) => {
+    let socksColorNumbers = 0;
+    socksArr.forEach((n) => {
+      if (num === n) {
+        socksColorNumbers++;
+      }
+    });
+    socksPair += Math.trunc(socksColorNumbers / 2);
+  });
+  return socksPair;
 }
 
 module.exports = socksForSale;
